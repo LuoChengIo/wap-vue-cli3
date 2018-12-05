@@ -32,3 +32,8 @@ npm run test:unit
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### postcss-aspect-ratio-mini
+See http://npm.taobao.org/package/postcss-aspect-ratio-mini
+### vue-wechat-title
+See https://github.com/deboyblog/vue-wechat-title
