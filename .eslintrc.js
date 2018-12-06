@@ -17,8 +17,7 @@ module.exports = {
         "singleQuote": true,
         "trailingComma": "none",
         "bracketSpacing": true,
-        "jsxBracketSameLine": true,
-        "parser": "flow"
+        "jsxBracketSameLine": true
       }
     ],
     // "vue/html-end-tags": 0
