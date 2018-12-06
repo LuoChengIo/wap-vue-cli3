@@ -1,30 +1,67 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <transition name="page">
+      <router-view class="child-view"></router-view>
+    </transition>
   </div>
 </template>
-
-<style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  transform: translateX(0);
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+export default {
+  data() {
+    return {
+      gradeClass: "ios"
+    };
+  },
+  created() {
+    // 不同的类型适用不同的类型页面切换效果
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+      this.gradeClass = "ios";
+    } else {
+      this.gradeClass = "android";
     }
-  }
+    document.querySelector("body").className = this.gradeClass;
+  },
+  // dynamically set transition based on route change
+  watch: {
+    $route(to, from) {
+      const toDepth = to.path.split("/").length;
+      const fromDepth = from.path.split("/").length;
+      const root = document.getElementById("app");
+      if (toDepth < fromDepth) {
+        root.setAttribute("transition-direction", "back");
+      } else {
+        root.setAttribute("transition-direction", "forward");
+      }
+    }
+  },
+  methods: {}
+};
+</script>
+<style lang="scss">
+@import "@/styles/variables.scss";
+body,
+html,
+#app {
+  height: 100%;
+}
+.child-view {
+  /* position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; */
+  min-height: 100%;
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+}
+.slide-left-enter,
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translate(100%, 0);
+  transform: translate3d(100%, 0, 0);
+}
+.slide-left-leave-active,
+.slide-right-enter {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
 }
 </style>

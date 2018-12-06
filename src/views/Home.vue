@@ -1,22 +1,20 @@
 <template>
   <div class="home test aspect-box">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <svg-icon icon-class="save" class="vm mr5"></svg-icon>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
 export default {
   name: "Home",
-  components: {
-    HelloWorld
+  created() {
+    console.log("process.env.VUE_APP_TITLE", process.env.VUE_APP_TITLE)
   }
 };
 </script>
-<style lang="postcss" scoped>
+<style lang="scss" scoped>
 .test {
   font-size: 12px;
   transform: translateX(0);
