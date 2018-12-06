@@ -2,7 +2,7 @@
   <button
     class="vc-button"
     @click="handleClick"
-    :disabled="buttonDisabled || loading"
+    :disabled="buttonDisabled || loading" 
     :autofocus="autofocus"
     :type="nativeType"
     :class="[

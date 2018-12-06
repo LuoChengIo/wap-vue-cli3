@@ -1,6 +1,5 @@
 <template>
   <div class="home test aspect-box">
-    <img alt="Vue logo" src="../assets/logo.png">
     <svg-icon icon-class="save" class="vm mr5"></svg-icon>
   </div>
 </template>
@@ -10,7 +9,7 @@
 export default {
   name: "Home",
   created() {
-    console.log("process.env.VUE_APP_TITLE", process.env.VUE_APP_TITLE)
+    console.log("process.env.VUE_APP_TITLE", process.env.VUE_APP_TITLE);
   }
 };
 </script>
