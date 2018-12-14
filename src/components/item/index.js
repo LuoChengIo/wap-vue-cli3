@@ -1,8 +1,8 @@
-import VcItem from "../list/src/item.vue";
+import VcItem from '../list/src/item.vue'
 
 /* istanbul ignore next */
 VcItem.install = function(Vue) {
-  Vue.component("vc-item", VcItem);
-};
+  Vue.component('vc-item', VcItem)
+}
 
-export default VcItem;
+export default VcItem

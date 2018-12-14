@@ -18,7 +18,7 @@
   >
     <span class="vl-radio__label" @keydown.stop>
       <slot></slot>
-      <template v-if="!$slots.default">{{label}}</template>
+      <template v-if="!$slots.default">{{ label }}</template>
     </span>
     <span
       class="vl-radio__input"
@@ -33,7 +33,11 @@
           class-name="r-icon active"
           icon-class="checkbox-marked-circle"
         ></svg-icon>
-        <svg-icon v-else class-name="r-icon" icon-class="checkbox-blank-circle-outline"></svg-icon>
+        <svg-icon
+          v-else
+          class-name="r-icon"
+          icon-class="checkbox-blank-circle-outline"
+        ></svg-icon>
       </span>
       <input
         class="vl-radio__original"
@@ -47,17 +51,17 @@
         :name="name"
         :disabled="isDisabled"
         tabindex="-1"
-      >
+      />
     </span>
   </label>
 </template>
 <script>
-import Emitter from "@/mixins/emitter";
+import Emitter from '@/mixins/emitter'
 
 export default {
-  name: "VcRadio",
+  name: 'VcRadio',
   mixins: [Emitter],
-  componentName: "VlRadio",
+  componentName: 'VlRadio',
   props: {
     value: {},
     label: {},
@@ -69,50 +73,50 @@ export default {
   data() {
     return {
       focus: false
-    };
+    }
   },
   computed: {
     isGroup() {
-      let parent = this.$parent;
+      let parent = this.$parent
       while (parent) {
-        if (parent.$options.componentName !== "VlRadioGroup") {
-          parent = parent.$parent;
+        if (parent.$options.componentName !== 'VlRadioGroup') {
+          parent = parent.$parent
         } else {
-          this._radioGroup = parent;
-          return true;
+          this._radioGroup = parent
+          return true
         }
       }
-      return false;
+      return false
     },
     model: {
       get() {
-        return this.isGroup ? this._radioGroup.value : this.value;
+        return this.isGroup ? this._radioGroup.value : this.value
       },
       set(val) {
-        console.log(val);
+        console.log(val)
         if (this.isGroup) {
-          this.dispatch("VlRadioGroup", "input", [val]);
+          this.dispatch('VlRadioGroup', 'input', [val])
         } else {
-          this.$emit("input", val);
+          this.$emit('input', val)
         }
       }
     },
     _elFormItemSize() {
-      return (this.elFormItem || {}).elFormItemSize;
+      return (this.elFormItem || {}).elFormItemSize
     },
     radioSize() {
       const temRadioSize =
-        this.size || this._elFormItemSize || (this.$ELEMENT || {}).size;
+        this.size || this._elFormItemSize || (this.$ELEMENT || {}).size
       return this.isGroup
         ? this._radioGroup.radioGroupSize || temRadioSize
-        : temRadioSize;
+        : temRadioSize
     },
     isDisabled() {
       return this.isGroup
         ? this._radioGroup.disabled ||
             this.disabled ||
             (this.elForm || {}).disabled
-        : this.disabled || (this.elForm || {}).disabled;
+        : this.disabled || (this.elForm || {}).disabled
     },
     tabIndex() {
       return !this.isDisabled
@@ -121,20 +125,20 @@ export default {
             ? 0
             : -1
           : 0
-        : -1;
+        : -1
     }
   },
 
   methods: {
     handleChange() {
       this.$nextTick(() => {
-        this.$emit("change", this.model);
+        this.$emit('change', this.model)
         this.isGroup &&
-          this.dispatch("VlRadioGroup", "handleChange", this.model);
-      });
+          this.dispatch('VlRadioGroup', 'handleChange', this.model)
+      })
     }
   }
-};
+}
 </script>
 <style lang="scss">
 .vl-radio {

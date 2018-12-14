@@ -1,45 +1,42 @@
 <template>
-  <div class="vc-item" flexcontainer align-items-center :class="{'bd':!itemBoder}">
-    <div class="left">
-      <slot name="left"></slot>
-    </div>
-    <div class="center ell">
-      <slot></slot>
-    </div>
+  <div
+    class="vc-item"
+    flexcontainer
+    align-items-center
+    :class="{ bd: !itemBoder }"
+  >
+    <div class="left"><slot name="left"></slot></div>
+    <div class="center ell"><slot></slot></div>
     <div class="right">
       <slot name="right">
-        <svg-icon v-if="arrow" class="arrow" icon-class="arrow_right"/>
+        <svg-icon v-if="arrow" class="arrow" icon-class="arrow_right" />
       </slot>
     </div>
   </div>
 </template>
 
 <script>
-import icon from "@/components/icon";
 export default {
   props: {
     arrow: Boolean
   },
   inject: {
     vlist: {
-      default: ""
+      default: ''
     }
   },
   computed: {
     itemBoder() {
-      return (this.vlist || {}).noborder;
+      return (this.vlist || {}).noborder
     }
   },
   data() {
-    return {};
-  },
-  components: {
-    icon
+    return {}
   }
-};
+}
 </script>
 
-<style lang='scss'>
+<style lang="scss">
 .vc-item {
   position: relative;
   /* padding: 38px 0; */
@@ -62,7 +59,7 @@ export default {
   }
   &.bd + .vc-item.bd {
     &:before {
-      content: "";
+      content: '';
       position: absolute;
       background-color: var(--item-border-color);
       display: block;

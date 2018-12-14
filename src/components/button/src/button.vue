@@ -2,7 +2,7 @@
   <button
     class="vc-button"
     @click="handleClick"
-    :disabled="buttonDisabled || loading" 
+    :disabled="buttonDisabled || loading"
     :autofocus="autofocus"
     :type="nativeType"
     :class="[
@@ -11,45 +11,42 @@
         'is-disabled': buttonDisabled || loading,
         'is-loading': loading,
         'is-plain': plain,
-        'is-block':block,
-        'is-round': round,
+        'is-block': block,
+        'is-round': round
       }
     ]"
     :style="buttonStyles"
   >
-    <svg-icon class="vc-loading" v-if="loading" icon-class="spinner2"/>
+    <svg-icon class="vc-loading" v-if="loading" icon-class="spinner2" />
     <svg-icon v-if="icon && !loading" :icon-class="icon"></svg-icon>
-    <span v-if="$slots.default">
-      <slot></slot>
-    </span>
+    <span v-if="$slots.default"> <slot></slot> </span>
   </button>
 </template>
 
 <script>
 // import { hexToRgba } from '@/utils'
-import icon from "@/components/icon";
 export default {
   props: {
     type: {
       type: String,
-      default: "default"
+      default: 'default'
     },
     size: Number,
     icon: {
       type: String,
-      default: ""
+      default: ''
     },
     bgcolor: {
       type: String,
-      default: ""
+      default: ''
     },
     color: {
       type: String,
-      default: ""
+      default: ''
     },
     nativeType: {
       type: String,
-      default: "button"
+      default: 'button'
     },
     plain: Boolean,
     loading: Boolean,
@@ -60,31 +57,28 @@ export default {
   },
   computed: {
     buttonStyles() {
-      const style = {};
-      if (this.size) style["font-size"] = this.buttonFSize;
-      if (this.color) style["color"] = this.color;
-      if (this.bgcolor) style["background"] = this.bgcolor;
+      const style = {}
+      if (this.size) style['font-size'] = this.buttonFSize
+      if (this.color) style['color'] = this.color
+      if (this.bgcolor) style['background'] = this.bgcolor
       // if (this.bgcolor) style['box-shadow'] = `0px 0px 10px ${hexToRgba(this.bgcolor, 90).rgba}`
-      if (this.plain && this.color) style["border-color"] = this.color;
-      return style;
+      if (this.plain && this.color) style['border-color'] = this.color
+      return style
     },
     buttonFSize() {
       // 按钮字体px转化成vw
-      return (this.size / 750) * 100 + "vw";
+      return (this.size / 750) * 100 + 'vw'
     },
     buttonDisabled() {
-      return this.disabled;
+      return this.disabled
     }
-  },
-  components: {
-    icon
   },
   methods: {
     handleClick(evt) {
-      this.$emit("click", evt);
+      this.$emit('click', evt)
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

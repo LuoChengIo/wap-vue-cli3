@@ -1,18 +1,33 @@
+// {
+//   //.vue文件template格式化支持，并使用js-beautify-html插件
+//   "vetur.format.defaultFormatter.html": "js-beautify-html",
+//   //js-beautify-html格式化配置，属性强制换行
+//   //文档：https://github.com/beautify-web/js-beautify#css--html
+//   "vetur.format.defaultFormatterOptions": {
+//     "js-beautify-html": {
+//       "wrap_attributes": "force"
+//     }
+//   },
+//   //根据文件后缀名定义vue文件类型
+//   "files.associations": {
+//     "*.vue": "vue"
+//   },
+//   //保存时eslint自动修复错误
+//   "eslint.validate": [
+//     "javascript",
+//     "javascriptreact",
+//     {
+//       "language": "vue",
+//       "autoFix": true
+//     }
+//   ],
+//   "eslint.autoFixOnSave": true
+// }
 {
-  //由于prettier不能格式化vue文件template  所以使用js-beautify-html格式化
-  // "vetur.format.defaultFormatter.html": "js-beautify-html",
-  "vetur.format.defaultFormatterOptions": {
-    "js-beautify-html": {
-      "wrap_attributes": "force-aligned" //属性强制折行对齐
-    }
-  },
-  "eslint.autoFixOnSave": true, //保存时使用自动格式化
-  "eslint.validate": [ //验证文件类型
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
     "javascript",
     "javascriptreact",
-    "vue",
-    "html",
-    "jsx",
     {
       "language": "html",
       "autoFix": true
@@ -22,7 +37,5 @@
       "autoFix": true
     }
   ],
-  "prettier.singleQuote": true, //使用单引号而不是双引号
-  "prettier.jsxBracketSameLine": true, //将>多行JSX元素放在最后一行的末尾，而不是单独放在下一行
-  "editor.formatOnSave": true, //保存时自动格式化
+  "vetur.format.defaultFormatter.html": "prettier"
 }

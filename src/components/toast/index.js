@@ -1,8 +1,8 @@
-import VcToast from "./src/toast";
+import VcToast from './src/toast'
 
 /* istanbul ignore next */
 VcToast.install = function(Vue) {
-  Vue.prototype.$toast = VcToast;
-};
+  Vue.prototype.$toast = VcToast
+}
 
-export default VcToast;
+export default VcToast

@@ -1,8 +1,8 @@
-import VcInput from "./src/input";
+import VcInput from './src/input'
 
 /* istanbul ignore next */
 VcInput.install = function(Vue) {
-  Vue.component("vc-input", VcInput);
-};
+  Vue.component('vc-input', VcInput)
+}
 
-export default VcInput;
+export default VcInput

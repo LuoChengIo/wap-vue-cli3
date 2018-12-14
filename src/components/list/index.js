@@ -1,8 +1,8 @@
-import VcList from "./src/List";
+import VcList from './src/List'
 
 /* istanbul ignore next */
 VcList.install = function(Vue) {
-  Vue.component("vc-list", VcList);
-};
+  Vue.component('vc-list', VcList)
+}
 
-export default VcList;
+export default VcList

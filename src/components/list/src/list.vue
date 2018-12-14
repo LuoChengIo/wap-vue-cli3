@@ -1,7 +1,5 @@
 <template>
- <div class="vc-list" :class="{'pl': pl,'pr': pr}">
-   <slot></slot>
- </div>
+  <div class="vc-list" :class="{ pl: pl, pr: pr }"><slot></slot></div>
 </template>
 
 <script>
@@ -14,16 +12,16 @@ export default {
   provide() {
     return {
       vlist: this
-    };
+    }
   },
   data() {
-    return {};
+    return {}
   },
   components: {}
-};
+}
 </script>
 
-<style lang='postcss'>
+<style lang="postcss">
 .vc-list {
   position: relative;
   padding: 1px 0;

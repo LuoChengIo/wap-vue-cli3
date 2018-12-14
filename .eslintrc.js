@@ -8,19 +8,20 @@ module.exports = {
     '@vue/prettier'
   ],
   rules: {
-    'no-console': 'off',
-    'no-debugger': 'off',
+    "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
+    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
+    "no-alert": process.env.NODE_ENV === "production" ? "error" : "off",
     'vue/component-name-in-template-casing': false,
     "prettier/prettier": [
       "error",
       {
+        "semi": false,  
         "singleQuote": true,
         "trailingComma": "none",
         "bracketSpacing": true,
         "jsxBracketSameLine": true
       }
-    ],
-    // "vue/html-end-tags": 0
+    ]
   },
   parserOptions: {
     parser: 'babel-eslint'

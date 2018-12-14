@@ -7,14 +7,18 @@
       @click.self="handleWrapperClick"
       role="dialog"
       aria-modal="true"
-      :aria-label="title || 'dialog'">
-      <div class="vc-message-box" :class="[customClass, center && 'vc-message-box--center']">
+      :aria-label="title || 'dialog'"
+    >
+      <div
+        class="vc-message-box"
+        :class="[customClass, center && 'vc-message-box--center']"
+      >
         <div class="vc-message-box__header" v-if="title">
           <div class="vc-message-box__title">
             <span>{{ title }}</span>
           </div>
         </div>
-        <div class="vc-message-box__content" :class="{'notitle':!title}">
+        <div class="vc-message-box__content" :class="{ notitle: !title }">
           <div class="vc-message-box__message" v-if="message !== ''">
             <slot>
               <p v-if="!dangerouslyUseHTMLString">{{ message }}</p>
@@ -22,9 +26,21 @@
             </slot>
           </div>
         </div>
-        <div class="vc-message-box__btns" flexcontainer >
-          <span class="confirm-button ell bt1 br1" :class="[ cancelButtonClasses ]" v-show="showCancelButton" @click="handleAction('cancel')">{{ cancelButtonText }}</span>
-          <span class="confirm-button ell bt1 " :class="[ confirmButtonClasses ]" v-show="showConfirmButton" @click="handleAction('confirm')">{{ confirmButtonText }}</span>
+        <div class="vc-message-box__btns" flexcontainer>
+          <span
+            class="confirm-button ell bt1 br1"
+            :class="[cancelButtonClasses]"
+            v-show="showCancelButton"
+            @click="handleAction('cancel')"
+            >{{ cancelButtonText }}</span
+          >
+          <span
+            class="confirm-button ell bt1 "
+            :class="[confirmButtonClasses]"
+            v-show="showConfirmButton"
+            @click="handleAction('confirm')"
+            >{{ confirmButtonText }}</span
+          >
         </div>
       </div>
     </div>
@@ -32,7 +48,7 @@
 </template>
 
 <script type="text/babel">
-import Popup from "@/utils/popup";
+import Popup from '@/utils/popup'
 export default {
   mixins: [Popup],
   props: {
@@ -63,50 +79,50 @@ export default {
 
   computed: {
     confirmButtonClasses() {
-      return `primary ${this.confirmButtonClass}`;
+      return `primary ${this.confirmButtonClass}`
     },
     cancelButtonClasses() {
-      return `${this.cancelButtonClass}`;
+      return `${this.cancelButtonClass}`
     }
   },
 
   methods: {
     getSafeClose() {
-      const currentId = this.uid;
+      const currentId = this.uid
       return () => {
         this.$nextTick(() => {
-          if (currentId === this.uid) this.doClose();
-        });
-      };
+          if (currentId === this.uid) this.doClose()
+        })
+      }
     },
     doClose() {
-      if (!this.visible) return;
-      this.visible = false;
-      this._closing = true;
+      if (!this.visible) return
+      this.visible = false
+      this._closing = true
 
-      this.onClose && this.onClose();
+      this.onClose && this.onClose()
       if (this.lockScroll) {
-        setTimeout(this.restoreBodyStyle, 200);
+        setTimeout(this.restoreBodyStyle, 200)
       }
-      this.opened = false;
-      this.doAfterClose();
+      this.opened = false
+      this.doAfterClose()
       setTimeout(() => {
-        if (this.action) this.callback(this.action, this);
-      });
+        if (this.action) this.callback(this.action, this)
+      })
     },
 
     handleWrapperClick() {
       if (this.closeOnClickModal) {
-        this.handleAction(this.distinguishCancelAndClose ? "close" : "cancel");
+        this.handleAction(this.distinguishCancelAndClose ? 'close' : 'cancel')
       }
     },
     handleAction(action) {
-      this.action = action;
-      if (typeof this.beforeClose === "function") {
-        this.close = this.getSafeClose();
-        this.beforeClose(action, this, this.close);
+      this.action = action
+      if (typeof this.beforeClose === 'function') {
+        this.close = this.getSafeClose()
+        this.beforeClose(action, this, this.close)
       } else {
-        this.doClose();
+        this.doClose()
       }
     }
   },
@@ -114,7 +130,7 @@ export default {
   watch: {
     visible(val) {
       if (val) {
-        this.uid++;
+        this.uid++
       }
     }
   },
@@ -122,39 +138,39 @@ export default {
   mounted() {
     this.$nextTick(() => {
       if (this.closeOnHashChange) {
-        window.addEventListener("hashchange", this.close);
+        window.addEventListener('hashchange', this.close)
       }
-    });
+    })
   },
 
   beforeDestroy() {
     if (this.closeOnHashChange) {
-      window.removeEventListener("hashchange", this.close);
+      window.removeEventListener('hashchange', this.close)
     }
   },
   data() {
     return {
       uid: 1,
       title: undefined,
-      message: "",
-      type: "",
-      customClass: "",
+      message: '',
+      type: '',
+      customClass: '',
       showConfirmButton: true,
       showCancelButton: false,
-      action: "",
-      confirmButtonText: "",
-      cancelButtonText: "",
+      action: '',
+      confirmButtonText: '',
+      cancelButtonText: '',
       confirmButtonLoading: false,
       cancelButtonLoading: false,
-      confirmButtonClass: "",
+      confirmButtonClass: '',
       confirmButtonDisabled: false,
-      cancelButtonClass: "",
+      cancelButtonClass: '',
       callback: null,
       dangerouslyUseHTMLString: false,
       distinguishCancelAndClose: false
-    };
+    }
   }
-};
+}
 </script>
 <style lang="scss">
 .vc-message-box__wrapper {
@@ -165,7 +181,7 @@ export default {
   right: 0;
   text-align: center;
   &:after {
-    content: "";
+    content: '';
     display: inline-block;
     height: 100%;
     width: 0;

@@ -10,7 +10,7 @@
         <svg v-if="!spinner" class="circular" viewBox="25 25 50 50">
           <circle class="path" cx="50" cy="50" r="20" fill="none"></circle>
         </svg>
-        <svg-icon v-else class="vc-loading" :icon-class="spinner"/>
+        <svg-icon v-else class="vc-loading" :icon-class="spinner" />
         <p v-if="text" class="vc-loading-text">{{ text }}</p>
       </div>
     </div>
@@ -26,19 +26,19 @@ export default {
       background: null, // 背景替换
       fullscreen: true, // 是否全屏
       visible: false, // 是否显示
-      customClass: "" // 自定义样式
-    };
+      customClass: '' // 自定义样式
+    }
   },
 
   methods: {
     handleAfterLeave() {
-      this.$emit("after-leave");
+      this.$emit('after-leave')
     },
     setText(text) {
-      this.text = text;
+      this.text = text
     }
   }
-};
+}
 </script>
 <style lang="scss" scoped>
 .vc-loading-mask {
